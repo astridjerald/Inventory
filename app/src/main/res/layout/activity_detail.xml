@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<!-- Layout for the editor -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".DetailActivity">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".DetailActivity"
+    >
+
+    <!-- Overview category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/category_overview"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/edit_inventory_name"
+                android:hint="@string/hint_inventory_name"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+
+            <!-- Breed field -->
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:paddingLeft="4dp">
+            <EditText
+                android:id="@+id/edit_inventory_price"
+                android:hint="Price in"
+                android:inputType="numberDecimal"
+                style="@style/EditorFieldStyle" />
+                <TextView
+                    android:id="@+id/label_weight_units"
+                    android:text="$"
+                    style="@style/EditorUnitsStyle"/>
+            </RelativeLayout>
+            <!-- Breed field -->
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:paddingLeft="4dp">
+            <EditText
+                android:id="@+id/edit_inventory_quantity"
+                android:hint="Number of "
+                android:inputType="number"
+                style="@style/EditorFieldStyle" />
+            <TextView
+                android:id="@+id/label"
+                android:text="copies"
+                style="@style/EditorUnitsStyle"/>
+        </RelativeLayout>
+            <!-- Breed field -->
+
+            <!-- Gender drop-down spinner -->
+            <Spinner
+                android:id="@+id/edit_inventory_spinner"
+                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/supplier"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edit_inventory_supplier"
+                android:hint="Name of Supplier"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+            <EditText
+                android:id="@+id/edit_inventory_emailid"
+                android:hint="Supplier's Email ID"
+                android:inputType="text"
+                style="@style/EditorFieldStyle" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="Game Image"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/detailimage"
+                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/cd"
+                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add image"
+                android:id="@+id/imagetext"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+
+
+        <Button
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="DECREASE A COPY"
+            android:id="@+id/decreasecopy"/>
+        <Button
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ADD A COPY"
+            android:id="@+id/addcopy"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+    <!--&lt;!&ndash; Measurement category &ndash;&gt;-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/container_measurement"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--&lt;!&ndash; Label &ndash;&gt;-->
+        <!--<TextView-->
+            <!--android:text="@string/category_measurement"-->
+            <!--style="@style/CategoryStyle" />-->
+
+        <!--&lt;!&ndash; Input fields &ndash;&gt;-->
+        <!--<RelativeLayout-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="2"-->
+            <!--android:paddingLeft="4dp">-->
+
+            <!--&lt;!&ndash; Weight field &ndash;&gt;-->
+            <!--<EditText-->
+                <!--android:id="@+id/edit_pet_weight"-->
+                <!--android:hint="@string/hint_pet_weight"-->
+                <!--android:inputType="number"-->
+                <!--style="@style/EditorFieldStyle" />-->
+
+            <!--&lt;!&ndash; Units for weight (kg) &ndash;&gt;-->
+            <!--<TextView-->
+                <!--android:id="@+id/label_weight_units"-->
+                <!--android:text="@string/unit_pet_weight"-->
+                <!--style="@style/EditorUnitsStyle"/>-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+
