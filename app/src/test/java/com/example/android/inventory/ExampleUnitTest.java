@@ -1,4 +1,4 @@
-package com.example.android.inventory;
+package com.masteraj.android.inventory;
 
 import org.junit.Test;
 

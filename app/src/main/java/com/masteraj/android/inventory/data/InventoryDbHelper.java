@@ -1,4 +1,4 @@
-package com.example.android.inventory.data;
+package com.masteraj.android.inventory.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package com.example.android.inventory;
+package com.masteraj.android.inventory;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,37 +15,9 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.app.LoaderManager;
-import android.content.ContentValues;
-import android.content.CursorLoader;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
-import com.example.android.inventory.data.InventoryContract;
-import com.example.android.inventory.data.InventoryContract.InventoryEntry;
-
-
-import com.example.android.inventory.data.InventoryContract.InventoryEntry;
-import com.example.android.inventory.data.InventoryProvider;
+import com.masteraj.android.inventory.R;
+import com.masteraj.android.inventory.data.InventoryContract;
 
 /**
  * {@link PetCursorAdapter} is an adapter for a list or grid view
@@ -107,14 +78,14 @@ private int Quantity;
         priceTextView = (TextView) view.findViewById(R.id.price);
         Button salebutton = (Button) view.findViewById(R.id.sale);
         gamepicview=(ImageView) view.findViewById(R.id.itemimage);
-        long id = cursor.getLong(cursor.getColumnIndex(InventoryEntry._ID));
-        currentItemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
+        long id = cursor.getLong(cursor.getColumnIndex(InventoryContract.InventoryEntry._ID));
+        currentItemUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
         contextu=context;
         // Find the columns of pet attributes that we're interested in
-        int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_NAME);
-        int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_QUANTITY);
-        int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_PRICE);
-        int picColumnIndex=cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_IMAGE);
+        int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME);
+        int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY);
+        int priceColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
+        int picColumnIndex=cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMAGE);
 
         // Read the pet attributes from the Cursor for the current pet
         Name = cursor.getString(nameColumnIndex);
@@ -166,7 +137,7 @@ else{
         private void setter()
         {
             ContentValues values = new ContentValues();
-            values.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, Quantity);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY, Quantity);
             contextu.getContentResolver().update(currentItemUri, values, null, null);
             String Quantitty = Integer.toString(Quantity) + " copies left";;
             quantityTextView.setText(Quantitty);

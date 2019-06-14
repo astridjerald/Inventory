@@ -1,4 +1,4 @@
-package com.example.android.inventory;
+package com.masteraj.android.inventory;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -12,12 +12,10 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -30,13 +28,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.inventory.data.InventoryContract.InventoryEntry;
-
-import junit.framework.Test;
+import com.masteraj.android.inventory.R;
+import com.masteraj.android.inventory.data.InventoryContract;
 
 import java.io.ByteArrayOutputStream;
 
@@ -289,11 +285,11 @@ selectImage();
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     if (selection.equals(getString(R.string.platform_ps4))) {
-                        mplatform = InventoryEntry.PLATFORM_PS4;
+                        mplatform = InventoryContract.InventoryEntry.PLATFORM_PS4;
                     } else if (selection.equals(getString(R.string.platform_xbox))) {
-                        mplatform = InventoryEntry.PLATFORM_XBOX;
+                        mplatform = InventoryContract.InventoryEntry.PLATFORM_XBOX;
                     } else {
-                        mplatform = InventoryEntry.PLATFORM_PC;
+                        mplatform = InventoryContract.InventoryEntry.PLATFORM_PC;
                     }
                 }
             }
@@ -301,7 +297,7 @@ selectImage();
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mplatform = InventoryEntry.PLATFORM_PC;
+                mplatform = InventoryContract.InventoryEntry.PLATFORM_PC;
             }
         });
     }
@@ -333,8 +329,8 @@ selectImage();
             // Create a ContentValues object where column names are the keys,
             // and pet attributes from the editor are the values.
             ContentValues values = new ContentValues();
-            values.put(InventoryEntry.COLUMN_INVENTORY_NAME, nameString);
-            values.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierString);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME, nameString);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_SUPPLIER, supplierString);
 
             // If the weight is not provided by the user, don't try to parse the string into an
             // integer value. Use 0 by default.
@@ -350,11 +346,11 @@ selectImage();
             if (!TextUtils.isEmpty(quantityString)) {
                 quantity = Integer.parseInt(quantityString);
             }
-            values.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, quantity);
-            values.put(InventoryEntry.COLUMN_INVENTORY_PRICE, price);
-            values.put(InventoryEntry.COLUMN_INVENTORY_PLATFORM, mplatform);
-            values.put(InventoryEntry.COLUMN_INVENTORY_EMAILID, emailidString);
-            values.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, imageinfo);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY, quantity);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE, price);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PLATFORM, mplatform);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_EMAILID, emailidString);
+            values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMAGE, imageinfo);
 
 
 
@@ -362,7 +358,7 @@ selectImage();
             if (mCurrentPetUri == null) {
                 // This is a NEW pet, so insert a new pet into the provider,
                 // returning the content URI for the new pet.
-                Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+                Uri newUri = getContentResolver().insert(InventoryContract.InventoryEntry.CONTENT_URI, values);
 
                 // Show a toast message depending on whether or not the insertion was successful.
                 if (newUri == null) {
@@ -527,14 +523,14 @@ selectImage();
         // Since the editor shows all pet attributes, define a projection that contains
         // all columns from the pet table
         String[] projection = {
-                InventoryEntry._ID,
-                InventoryEntry.COLUMN_INVENTORY_NAME,
-                InventoryEntry.COLUMN_INVENTORY_SUPPLIER,
-                InventoryEntry.COLUMN_INVENTORY_QUANTITY,
-                InventoryEntry.COLUMN_INVENTORY_PRICE,
-        InventoryEntry.COLUMN_INVENTORY_PLATFORM,
-        InventoryEntry.COLUMN_INVENTORY_EMAILID,
-        InventoryEntry.COLUMN_INVENTORY_IMAGE};
+                InventoryContract.InventoryEntry._ID,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_SUPPLIER,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE,
+        InventoryContract.InventoryEntry.COLUMN_INVENTORY_PLATFORM,
+        InventoryContract.InventoryEntry.COLUMN_INVENTORY_EMAILID,
+        InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMAGE};
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -556,13 +552,13 @@ selectImage();
         // (This should be the only row in the cursor)
         if (cursor.moveToFirst()) {
             // Find the columns of pet attributes that we're interested in
-            int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_NAME);
-            int supplierColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_SUPPLIER);
-            int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_PRICE);
-            int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_QUANTITY);
-            int platformColumnIndex=cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_PLATFORM);
-            int emailidcolumnindex=cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_EMAILID);
-            int imageColumnIndex=cursor.getColumnIndex(InventoryEntry.COLUMN_INVENTORY_IMAGE);
+            int nameColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME);
+            int supplierColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_SUPPLIER);
+            int priceColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE);
+            int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY);
+            int platformColumnIndex=cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PLATFORM);
+            int emailidcolumnindex=cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_EMAILID);
+            int imageColumnIndex=cursor.getColumnIndex(InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMAGE);
 
             // Extract out the value from the Cursor for the given column index
             name = cursor.getString(nameColumnIndex);

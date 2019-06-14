@@ -17,7 +17,7 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".DetailActivity">
+    tools:context="com.masteraj.android.inventory.DetailActivity">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -25,7 +25,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".DetailActivity"
+    tools:context="com.masteraj.android.inventory.DetailActivity"
     >
 
     <!-- Overview category -->

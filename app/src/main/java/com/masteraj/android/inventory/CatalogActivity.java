@@ -1,4 +1,4 @@
-package com.example.android.inventory;
+package com.masteraj.android.inventory;
 
 import android.annotation.TargetApi;
 import android.app.LoaderManager;
@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -25,7 +24,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.android.inventory.data.InventoryContract.InventoryEntry;
+import com.masteraj.android.inventory.R;
+import com.masteraj.android.inventory.data.InventoryContract;
 
 import java.io.ByteArrayOutputStream;
 
@@ -78,9 +78,9 @@ public class CatalogActivity extends AppCompatActivity implements
                 // Form the content URI that represents the specific pet that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
                 // {@link PetEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.example.android.pets/pets/2"
+                // For example, the URI would be "content://com.masteraj.android.pets/pets/2"
                 // if the pet with ID 2 was clicked on.
-                Uri currentPetUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
+                Uri currentPetUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentPetUri);
@@ -105,26 +105,26 @@ public class CatalogActivity extends AppCompatActivity implements
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_INVENTORY_NAME, "Injustice 2");
-        values.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER, "Bane");
-        values.put(InventoryEntry.COLUMN_INVENTORY_PRICE, 25.5);
-        values.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, 7);
-        values.put(InventoryEntry.COLUMN_INVENTORY_PLATFORM, InventoryEntry.PLATFORM_PC);
-        values.put(InventoryEntry.COLUMN_INVENTORY_EMAILID, "astjer123@gmail.com");
-        values.put(InventoryEntry.COLUMN_INVENTORY_IMAGE, imagedata);
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME, "Injustice 2");
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_SUPPLIER, "Bane");
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE, 25.5);
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY, 7);
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_PLATFORM, InventoryContract.InventoryEntry.PLATFORM_PC);
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_EMAILID, "astjer123@gmail.com");
+        values.put(InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMAGE, imagedata);
 
         // Insert a new row for Toto into the provider using the ContentResolver.
         // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
         // into the pets database table.
         // Receive the new content URI that will allow us to access Toto's data in the future.
-        Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+        Uri newUri = getContentResolver().insert(InventoryContract.InventoryEntry.CONTENT_URI, values);
     }
 
     /**
      * Helper method to delete all pets in the database.
      */
     private void deleteAllPets() {
-        int rowsDeleted = getContentResolver().delete(InventoryEntry.CONTENT_URI, null, null);
+        int rowsDeleted = getContentResolver().delete(InventoryContract.InventoryEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
     }
 
@@ -157,16 +157,16 @@ public class CatalogActivity extends AppCompatActivity implements
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // Define a projection that specifies the columns from the table we care about.
         String[] projection = {
-                InventoryEntry._ID,
-                InventoryEntry.COLUMN_INVENTORY_NAME,
-                InventoryEntry.COLUMN_INVENTORY_PRICE,
-                InventoryEntry.COLUMN_INVENTORY_QUANTITY,
-                InventoryEntry.COLUMN_INVENTORY_IMAGE
+                InventoryContract.InventoryEntry._ID,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_NAME,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_PRICE,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_QUANTITY,
+                InventoryContract.InventoryEntry.COLUMN_INVENTORY_IMAGE
         };
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                InventoryEntry.CONTENT_URI,   // Provider content URI to query
+                InventoryContract.InventoryEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments

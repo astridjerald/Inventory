@@ -1,4 +1,4 @@
-package com.example.android.inventory.data;
+package com.masteraj.android.inventory.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.android.inventory.data.InventoryContract.InventoryEntry;
+import com.masteraj.android.inventory.data.InventoryContract.InventoryEntry;
 
 /**
  * {@link ContentProvider} for Pets app.
@@ -38,18 +38,18 @@ public class InventoryProvider extends ContentProvider {
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
 
-        // The content URI of the form "content://com.example.android.pets/pets" will map to the
+        // The content URI of the form "content://com.masteraj.android.pets/pets" will map to the
         // integer code {@link #PETS}. This URI is used to provide access to MULTIPLE rows
         // of the pets table.
         sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_INVENTORY, INVENTORY);
 
-        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
+        // The content URI of the form "content://com.masteraj.android.pets/pets/#" will map to the
         // integer code {@link #PET_ID}. This URI is used to provide access to ONE single row
         // of the pets table.
         //
         // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
-        // For example, "content://com.example.android.pets/pets/3" matches, but
-        // "content://com.example.android.pets/pets" (without a number at the end) doesn't match.
+        // For example, "content://com.masteraj.android.pets/pets/3" matches, but
+        // "content://com.masteraj.android.pets/pets" (without a number at the end) doesn't match.
         sUriMatcher.addURI(InventoryContract.CONTENT_AUTHORITY, InventoryContract.PATH_INVENTORY + "/#", INVENTORY_ID);
     }
 
@@ -83,7 +83,7 @@ public class InventoryProvider extends ContentProvider {
                 break;
             case INVENTORY_ID:
                 // For the PET_ID code, extract out the ID from the URI.
-                // For an example URI such as "content://com.example.android.pets/pets/3",
+                // For an example URI such as "content://com.masteraj.android.pets/pets/3",
                 // the selection will be "_id=?" and the selection argument will be a
                 // String array containing the actual ID of 3 in this case.
                 //
